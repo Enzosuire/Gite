@@ -45,8 +45,8 @@ class GiteController extends AbstractController
             // Assurez-vous d'ajuster ces valeurs selon vos besoins
 
             // Récupérez les propriétaire et contact associés au gîte
-            $proprietaire = $entityManager->getRepository(Proprietaire::class)->find(2); // Remplacez 1 par l'ID du propriétaire
-            $contact = $entityManager->getRepository(Contacts::class)->find(2); // Remplacez 1 par l'ID du contact
+            $proprietaire = $entityManager->getRepository(Proprietaire::class)->find(1); // Remplacez 1 par l'ID du propriétaire
+            $contact = $entityManager->getRepository(Contacts::class)->find(1); // Remplacez 1 par l'ID du contact
 
             $gite->setProprietaire($proprietaire);
             $gite->setContact($contact);

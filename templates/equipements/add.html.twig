@@ -18,12 +18,12 @@
         <li>pisicinePrivee: {{ equipements.pisicinePrivee  ? 'Oui' : 'Non' }}</li>
         <li>pisicinePartagee : {{ equipements.PiscinePartagee  ? 'Oui' : 'Non' }}</li>
         <li>tennis: {{ equipements.tennis ? 'Oui' : 'Non' }}</li>
-        <li>pig pong : {{ equipements.pigPong ? 'Oui' : 'Non' }}</li>
+        <li>pig pong : {{ equipements.pingPong ? 'Oui' : 'Non' }}</li>
 
         {# Ajoutez d'autres propriétés selon vos besoins #}
     </ul>
 
     <p>
-        <a href="{{ path('add_equipements') }}">Ajouter d'autres équipements</a>
+        <a href="{{ path('app_equipements') }}">Ajouter d'autres équipements</a>
     </p>
 {% endblock %}

@@ -24,11 +24,11 @@ class ProprietaireController extends AbstractController
     public function addProprietaire(EntityManagerInterface $entityManager): Response
     {
         $proprietaire = new Proprietaire();
-        $proprietaire->setNom('Jackie'); // Remplacez par le nom réel
-        $proprietaire->setPrenom('enzo'); // Remplacez par le prénom réel
-        $proprietaire->setAdresse('5 rue des duranderies '); // Remplacez par l'adresse réelle
-        $proprietaire->setTelephone('07/50/88/12/22'); // Remplacez par le numéro de téléphone réel
-        $proprietaire->setEmail('enzo@antoine.fr'); // Remplacez par l'email réel
+        $proprietaire->setNom('Michel'); // Remplacez par le nom réel
+        $proprietaire->setPrenom('Léo'); // Remplacez par le prénom réel
+        $proprietaire->setAdresse('2 rue des oranges '); // Remplacez par l'adresse réelle
+        $proprietaire->setTelephone('06/50/88/12/22'); // Remplacez par le numéro de téléphone réel
+        $proprietaire->setEmail('michel@Léo.fr'); // Remplacez par l'email réel
 
         // Ajoutez d'autres propriétés selon vos besoins
 

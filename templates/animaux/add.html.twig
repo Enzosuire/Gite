@@ -1,0 +1,25 @@
+{% block title %}Animaux ajouté{% endblock %}
+
+{% block body %}
+    <h1>Animaux ajouté</h1>
+
+    <p>L'animaux a été ajouté avec succès.</p>
+
+    <dl>
+        <dt>ID:</dt>
+        <dd>{{ animaux.id }}</dd>
+
+        <dt>Accepte Animaux:</dt>
+        <dd>{{ animaux.accepteAnimaux ? 'Oui' : 'Non' }}</dd>
+
+        <dt>Tarif Animaux:</dt>
+        <dd>{{ animaux.tarifAnimaux }}</dd>
+
+        {# Add more details as needed #}
+
+        <dt>Gite:</dt>
+        <dd>{{ animaux.gite ? animaux.gite.id : 'Aucun' }}</dd>
+    </dl>
+
+    <a href="{{ path('app_animaux') }}">Retour à la liste des Animaux</a>
+{% endblock %}

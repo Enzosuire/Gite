@@ -1,0 +1,32 @@
+{# templates/tarifs/add.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Tarif ajouté{% endblock %}
+
+{% block body %}
+    <h1>Tarif ajouté</h1>
+
+    <p>Le tarif a été ajouté avec succès.</p>
+
+    <dl>
+        <dt>Identifiant :</dt>
+        <dd>{{ tarif.id }}</dd>
+
+        <dt>Période de début :</dt>
+        <dd>{{ tarif.periodeDebut|date('Y-m-d') }}</dd>
+
+        <dt>Période de fin :</dt>
+        <dd>{{ tarif.periodeFin|date('Y-m-d') }}</dd>
+
+        <dt>Tarif hebdomadaire :</dt>
+        <dd>{{ tarif.tarifHebdomadaire }} €</dd>
+
+        {# <dt>Gîte associé :</dt>
+        <dd>{{ tarif.gite.Nom }}</dd>
+    </dl> #}
+
+    {# Add any additional details you want to display #}
+
+    <a href="{{ path('app_tarifs') }}">Retour à la liste des tarifs</a>
+{% endblock %}
