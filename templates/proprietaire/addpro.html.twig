@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Gîte{% endblock %}
+
+{% block body %}
+    {% if adjectif is defined %}
+        <h1>proprietaire {{ adjectif }}</h1>
+        <p>Informations sur le gîte ajouté :</p>
+        <ul>
+            <li>Nom : {{ proprietaire.getNom() }}</li>
+            <li>Prenom : {{ proprietaire.getPrenom() }}</li>
+            <li>Adresse : {{ proprietaire.getAdresse() }}</li>
+            <li>Eamil : {{ proprietaire.getEmail() }}</li>
+            <li>Telephone : {{ proprietaire.getTelephone() }}</li>
+            {# Ajoutez d'autres propriétés ici en fonction de votre entité #}
+        </ul>
+
+    {% endif %}
+{% endblock %}

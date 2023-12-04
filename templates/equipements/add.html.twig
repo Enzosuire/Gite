@@ -1,0 +1,29 @@
+{# equipements/add.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'équipements{% endblock %}
+
+{% block body %}
+    <h1>Équipements ajoutés</h1>
+
+    <p>Les équipements suivants ont été ajoutés :</p>
+
+    <ul>
+        <li>Lave-linge: {{ equipements.lavelinge ? 'Oui' : 'Non' }}</li>
+        <li>Climatisation: {{ equipements.climatisation ? 'Oui' : 'Non' }}</li>
+        <li>Télévision: {{ equipements.television ? 'Oui' : 'Non' }}</li>
+        <li>terasse : {{ equipements.Terrasse ? 'Oui' : 'Non' }}</li>
+        <li>barbecue: {{ equipements.barbecue ? 'Oui' : 'Non' }}</li>
+        <li>pisicinePrivee: {{ equipements.pisicinePrivee  ? 'Oui' : 'Non' }}</li>
+        <li>pisicinePartagee : {{ equipements.PiscinePartagee  ? 'Oui' : 'Non' }}</li>
+        <li>tennis: {{ equipements.tennis ? 'Oui' : 'Non' }}</li>
+        <li>pig pong : {{ equipements.pigPong ? 'Oui' : 'Non' }}</li>
+
+        {# Ajoutez d'autres propriétés selon vos besoins #}
+    </ul>
+
+    <p>
+        <a href="{{ path('add_equipements') }}">Ajouter d'autres équipements</a>
+    </p>
+{% endblock %}
