@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1 class="mt-4 mb-4 text-center">Liste des Gîtes</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for gite in gites %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body p-5">
+                        <h5 class="card-title text-center">{{ gite.getNom() }}</h5>
+                        <p class="card-text">
+                            Localisation du gite : {{ gite.getLocalisation() }}<br>
+                            Surface habitable: {{ gite.getSurfaceHabitable() }} m²<br>
+                            Nombre de chambres: {{ gite.getNombreChambres() }}<br>
+                            Nombre de couchages: {{ gite.getNombresCouchages() }}<br>
+                         
+                        </p>
+                        <div class="text-center">
+                          <a href="{{ path('gite_detail', {'id': gite.getId()}) }}" class="btn btn-warning btn">Détail</a>
+                         </div>
+
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

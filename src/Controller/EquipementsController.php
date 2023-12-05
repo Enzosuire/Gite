@@ -24,7 +24,7 @@ class EquipementsController extends AbstractController
     public function addEquipements(EntityManagerInterface $entityManager): Response
     {
         $equipements = new Equipements();
-        $equipements->setLavelinge(true); // Remplacez par la valeur réelle
+        $equipements->setLavelinge(false); // Remplacez par la valeur réelle
         $equipements->setClimatisation(true); // Remplacez par la valeur réelle
         $equipements->setTerrasse(true); 
         $equipements->setTelevision(true); 
@@ -43,6 +43,7 @@ class EquipementsController extends AbstractController
             'controller_name' => 'EquipementsController',
             'adjectif' => 'ajouté',
             'equipements' => $equipements,
+            
         ]);
     }
 }

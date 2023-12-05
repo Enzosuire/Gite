@@ -43,31 +43,5 @@ class ProprietaireController extends AbstractController
     }
 
 
-//     use App\Entity\Proprietaire;
-// use App\Form\ProprietaireType; // Assurez-vous d'importer le formulaire approprié
-
-// #[Route('/proprietaires/add', name: 'add_proprietaire')]
-// public function addProprietaire(Request $request, EntityManagerInterface $entityManager): Response
-// {
-//     $proprietaire = new Proprietaire();
-    
-//     // Utilisez le formulaire ProprietaireType que vous devez créer pour les champs du propriétaire
-//     $form = $this->createForm(ProprietaireType::class, $proprietaire);
-//     $form->handleRequest($request);
-
-//     if ($form->isSubmitted() && $form->isValid()) {
-//         // Ajoutez ici la logique pour sauvegarder le propriétaire dans la base de données
-//         $entityManager->persist($proprietaire);
-//         $entityManager->flush();
-
-//         // Redirigez l'utilisateur vers une page de confirmation ou une autre action
-//         return $this->redirectToRoute('proprietaires_index');
-//     }
-
-//     return $this->render('proprietaire/new.html.twig', [
-//         'form' => $form->createView(),
-//     ]);
-// }
-
 
 }

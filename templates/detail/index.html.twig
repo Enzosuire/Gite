@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Gîte{% endblock %}
+
+{% block body %}
+    <div class="container mt-4 mb-4">
+        <h1 class="text-center">Détails du Gîte</h1>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ gite.getNom() }}</h5>
+                <p class="card-text">
+                    <strong>Localisation:</strong> {{ gite.getLocalisation() }}<br>
+                    <strong>Surface habitable:</strong> {{ gite.getSurfaceHabitable() }} m²<br>
+                    <strong>Nombre de chambres:</strong> {{ gite.getNombreChambres() }}<br>
+                    <strong>Nombre de couchages:</strong> {{ gite.getNombresCouchages() }}<br>
+                    
+                </p>
+            </div>
+        </div>
+
+  <h2 class="mt-4">Équipements</h2>
+
+    <p>Les équipements suivants ont été ajoutés :</p>
+    {% for equipement in gite.equipement %}
+
+        <ul class="list-group">
+              <li class="list-group-item"><strong>Lave-linge :</strong> {{ equipement.lavelinge ? 'Oui' : 'Non' }}</li>
+              <li class="list-group-item"><strong>Climatisation :</strong> {{ equipement.climatisation ? 'Oui' : 'Non' }}</li>
+              <li class="list-group-item"><strong>Télévision :</strong> {{ equipement.television ? 'Oui' : 'Non' }}</li>
+              <li class="list-group-item"><strong>Terrasse :</strong> {{ equipement.terrasse ? 'Oui' : 'Non' }}</li>
+              <li class="list-group-item"><strong>Barbecue :</strong> {{ equipement.barbecue ? 'Oui' : 'Non' }}</li>
+              <li class="list-group-item"><strong>Piscine Privée :</strong> {{ equipement.pisicinePrivee  ? 'Oui' : 'Non' }}</li>
+              <li class="list-group-item"><strong>Piscine Partagée :</strong> {{ equipement.piscinePartagee  ? 'Oui' : 'Non' }}</li>
+              <li class="list-group-item"><strong>Tennis :</strong> {{ equipement.tennis ? 'Oui' : 'Non' }}</li>
+              <li class="list-group-item"><strong>Ping Pong :</strong> {{ equipement.pingPong ? 'Oui' : 'Non' }}</li>
+
+            {# Ajoutez d'autres propriétés selon vos besoins #}
+        </ul>
+
+    {% endfor %}
+
+
+        <h2 class="mt-4">Contacts</h2>
+        {% if gite.getContact() is defined %}
+            <p>Informations sur le contact associé :</p>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Nom :</strong> {{ gite.getContact().getNom() }}</li>
+                <li class="list-group-item"><strong>Prénom :</strong> {{ gite.getContact().getPrenom() }}</li>
+                <li class="list-group-item"><strong>Email :</strong> {{ gite.getContact().getEmail() }}</li>
+                <li class="list-group-item"><strong>Téléphone :</strong> {{ gite.getContact().getTelephone() }}</li>
+            </ul>
+        {% endif %}
+
+        <h2 class="mt-4">Propriétaire</h2>
+        {% if gite.getProprietaire() is defined %}
+            <p>Informations sur le propriétaire associé :</p>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Nom :</strong> {{ gite.getProprietaire().getNom() }}</li>
+                <li class="list-group-item"><strong>Prénom :</strong> {{ gite.getProprietaire().getPrenom() }}</li>
+                <li class="list-group-item"><strong>Adresse :</strong> {{ gite.getProprietaire().getAdresse() }}</li>
+                <li class="list-group-item"><strong>Email :</strong> {{ gite.getProprietaire().getEmail() }}</li>
+                <li class="list-group-item"><strong>Téléphone :</strong> {{ gite.getProprietaire().getTelephone() }}</li>
+            </ul>
+        {% endif %}
+
+        <h2 class="mt-4">Tarifs</h2>
+        {% if gite.getTarifs() is not empty %}
+            <p>Tarifs associés :</p>
+            <ul class="list-group">
+                {% for tarif in gite.getTarifs() %}
+                    <ul class="list-group-item">
+                       <li class="list-group-item"><strong>Période de début:</strong> {{ tarif.getPeriodeDebut()|date('Y-m-d') }}<br>
+                        <li class="list-group-item"><strong>Période de fin:</strong> {{ tarif.getPeriodeFin()|date('Y-m-d') }}<br>
+                        <li class="list-group-item"><strong>Tarif hebdomadaire:</strong> {{ tarif.getTarifHebdomadaire() }} €
+                    </ul>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h2 class="mt-4">Animaux</h2>
+        {% if gite.getAnimaux() is not empty %}
+            <p>Animaux associés :</p>
+            <ul class="list-group">
+                {% for animaux in gite.getAnimaux() %}
+                    <ul class="list-group-item">
+                        <li class="list-group-item"><strong>Accepte Animaux :</strong> {{ animaux.isAccepteAnimaux() ? 'Oui' : 'Non' }}</li>
+                       <li class="list-group-item"><strong>Tarif Animaux :</strong> {{ animaux.getTarifAnimaux() }}</li>
+                    </ul>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+<h2 class="mt-4">Services</h2>
+{% for service in gite.services %}
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Accès Internet : </strong> {{ service.accesInternet ? 'Oui' : 'Non' }}</li>
+        <li class="list-group-item"><strong>Location de Linge : </strong>{{ service.locationLinge ? 'Oui' : 'Non' }}</li>
+        <li class="list-group-item"><strong>Ménage en Fin de Séjour : </strong> {{ service.menageFinSejour ? 'Oui' : 'Non' }}</li>
+        {# Ajoutez d'autres propriétés selon vos besoins #}
+    </ul>
+{% endfor %}
+
+    
+    </div>
+{% endblock %}
+
+
+ 

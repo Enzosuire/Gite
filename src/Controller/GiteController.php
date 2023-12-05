@@ -9,9 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Proprietaire;
 use App\Entity\Contacts;
-
-use App\Entity\Gites;
+use App\Entity\Equipements;
+use App\Entity\Animaux;
+use App\Entity\Services;
 use App\Form\GiteType;
+use App\Entity\Gites;
+
 
 
 class GiteController extends AbstractController
@@ -32,92 +35,72 @@ class GiteController extends AbstractController
     {
         
             $gite = new Gites();
-            $gite->setLocalisation('Localisation du gîte');
-            $gite->setSurfaceHabitable(100.0);
-            $gite->setNombreChambres(3);
-            $gite->setNombresCouchages(6);
+            $gite->setLocalisation('Marseille');
+            $gite->setSurfaceHabitable(400);
+            $gite->setNombreChambres(8);
+            $gite->setNombresCouchages(13);
             $gite->setEquipements('Équipements du gîte');
+            $gite->setNom('Bateau');
+            
 
-            // Récupérez les équipements sélectionnés depuis la requête
-            // $equipementsSelectionnes = $request->request->get('equipements');
-            // $gite->setEquipements(implode(', ', $equipementsSelectionnes));
 
             // Assurez-vous d'ajuster ces valeurs selon vos besoins
 
-            // Récupérez les propriétaire et contact associés au gîte
-            $proprietaire = $entityManager->getRepository(Proprietaire::class)->find(1); // Remplacez 1 par l'ID du propriétaire
-            $contact = $entityManager->getRepository(Contacts::class)->find(1); // Remplacez 1 par l'ID du contact
-
+            $proprietaire = $entityManager->getRepository(Proprietaire::class)->find(3);
+            $contact = $entityManager->getRepository(Contacts::class)->find(4);
+    
             $gite->setProprietaire($proprietaire);
             $gite->setContact($contact);
+    
+            // Récupérez les équipements associés au gîte (assuming you have an array of equipement IDs)
+            $equipementIds = [4]; // Replace with the actual IDs selected in your form
+            foreach ($equipementIds as $equipementId) {
+                $equipement = $entityManager->getRepository(Equipements::class)->find($equipementId);
+                if ($equipement) {
+                    $gite->addEquipement($equipement);
+                }
+            }
 
+
+            $animauxIds = [1]; // Replace with the actual IDs selected in your form
+            foreach ($animauxIds as $animauxId) {
+                $animaux = $entityManager->getRepository(Animaux::class)->find($animauxId);
+                if ($animaux) {
+                    $gite->addAnimaux($animaux);
+                }
+            }
+
+            $serviceIds = [1, 2]; // Remplacez par les IDs réels
+            foreach ($serviceIds as $serviceId) {
+                $service = $entityManager->getRepository(Services::class)->find($serviceId);
+                if ($service) {
+                    $gite->addService($service);
+                }
+            }
+    
             $entityManager->persist($gite);
             $entityManager->flush();
-
+    
             return $this->render('gite/show.html.twig', [
                 'controller_name' => 'GiteController',
                 'gite' => $gite,
                 'adjectif' => 'ajouté'
             ]);
-            
+        }
         
-    }
-
-  
-    #[Route('/gites/{id}', name:'gites_show')]
-    public function show($id): Response
-    {
-        // Ajoutez ici la logique pour afficher les détails d'un gîte en fonction de son ID
-        return $this->render('gite/show.html.twig', [
-            'controller_name' => 'GiteController',
-        ]);
-    }
-
-
     
 
-
-    // #[Route('/gites/new', name:'gites_new')]
-    // public function new(Request $request): Response
+  
+    // #[Route('/gites/{id}', name:'gites_show')]
+    // public function show($id): Response
     // {
-    //     $gite = new Gites();
-    //     $form = $this->createForm(GiteType::class, $gite);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         // Ajoutez ici la logique pour sauvegarder le gîte dans la base de données
-    //         // par exemple, utilisez Doctrine EntityManager
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->persist($gite);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('gites_index');
-    //     }
-
-    //     return $this->render('gite/new.html.twig', [
-    //         'form' => $form->createView(),
+    //     // Ajoutez ici la logique pour afficher les détails d'un gîte en fonction de son ID
+    //     return $this->render('gite/show.html.twig', [
+    //         'controller_name' => 'GiteController',
     //     ]);
     // }
 
 
-
-     #[Route('/gites/{id}', name:'gites_edit')]
-    public function edit($id): Response
-    {
-        // Ajoutez ici la logique pour éditer un gîte existant (formulaire d'édition)
-        return $this->render('gite/edit.html.twig', [
-            'controller_name' => 'GiteController',
-        ]);
-    }
-
-
-   
-    #[Route('/gites/{id}', name:'gites_delete , methods={"DELETE"}')]
-    public function delete($id): Response
-    {
-        // Ajoutez ici la logique pour supprimer un gîte
-        return $this->redirectToRoute('gites_index');
-    }
 
 
      

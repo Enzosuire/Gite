@@ -24,11 +24,11 @@ class ContactsController extends AbstractController
     public function addContacts(EntityManagerInterface $entityManager): Response
     {
         $contacts = new Contacts();
-        $contacts->setNom('Suire'); // Remplacez par le nom réel
-        $contacts->setPrenom('Enzo'); // Remplacez par le prénom réel
-        $contacts->setHorairesDisponibilite('15 h '); // Remplacez par l'adresse réelle
+        $contacts->setNom('duliege'); // Remplacez par le nom réel
+        $contacts->setPrenom('Bastien'); // Remplacez par le prénom réel
+        $contacts->setHorairesDisponibilite('12 h '); // Remplacez par l'adresse réelle
         $contacts->setTelephone('07/50/88/12/22'); // Remplacez par le numéro de téléphone réel
-        $contacts->setEmail('suire@enzo.fr'); // Remplacez par l'email réel
+        $contacts->setEmail('duliege@bastien.fr'); // Remplacez par l'email réel
 
         // Ajoutez d'autres propriétés selon vos besoins
 

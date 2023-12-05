@@ -7,11 +7,12 @@
         <h1>gite {{ adjectif }}</h1>
         <p>Informations sur le gîte ajouté :</p>
         <ul>
-            <li>Nom : {{ gite.getLocalisation() }}</li>
+            <li>Localisation : {{ gite.getLocalisation() }}</li>
             <li>Prenom : {{ gite.getSurfaceHabitable() }}</li>
             <li>Adresse : {{ gite.getNombreChambres() }}</li>
             <li>Email : {{ gite.getNombresCouchages() }}</li>
             <li>Telephone : {{ gite.getEquipements() }}</li>
+            <li>Nom : {{ gite.getNom() }}</li>
             {# Ajoutez d'autres propriétés ici en fonction de votre entité #}
         </ul>
 

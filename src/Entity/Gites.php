@@ -49,11 +49,21 @@ class Gites
     #[ORM\OneToMany(mappedBy: 'gite', targetEntity: Equipements::class)]
     private Collection $equipement;
 
+
+
+    #[ORM\Column(length: 255)]
+    private ?string $Nom = null;
+
+    #[ORM\OneToMany(mappedBy: 'Gites', targetEntity: Services::class)]
+    private Collection $services;
+
     public function __construct()
     {
         $this->animaux = new ArrayCollection();
         $this->tarifs = new ArrayCollection();
         $this->equipement = new ArrayCollection();
+        $this->services = new ArrayCollection();
+       
     }
 
     public function getId(): ?int
@@ -260,6 +270,64 @@ class Gites
     public function setProprietaire(?Proprietaire $proprietaire): self
     {
         $this->proprietaire = $proprietaire;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->Nom;
+    }
+
+    public function setNom(string $Nom): static
+    {
+        $this->Nom = $Nom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of services
+     *
+     * @return Collection
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    /**
+     * Set the value of services
+     *
+     * @param Collection $services
+     *
+     * @return self
+     */
+    public function setServices(Collection $services): self
+    {
+        $this->services = $services;
+
+        return $this;
+    }
+
+    public function addService(Services $service): static
+    {
+        if (!$this->services->contains($service)) {
+            $this->services->add($service);
+            $service->setGites($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Services $service): static
+    {
+        if ($this->services->removeElement($service)) {
+            // set the owning side to null (unless already changed)
+            if ($service->getGites() === $this) {
+                $service->setGites(null);
+            }
+        }
 
         return $this;
     }

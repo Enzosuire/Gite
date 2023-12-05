@@ -1,20 +1,3 @@
-{# 
-{% extends 'base.html.twig' %}
-
-{% block title %}Ajouter un Gîte{% endblock %}
-
-{% block body %}
-    <h1>Ajouter un Gîte</h1>
-
-    {{ form_start(form) }}
-    {{ form_row(form.proprietaireCoordonnees) }}
-    {{ form_row(form.horairesDisponibilite) }}
-   Ajoutez d'autres lignes pour les autres champs du formulaire 
-    {{ form_row(form.save) }}
-    {{ form_end(form) }}
-{% endblock %} #}
-
-
 
 {% extends 'base.html.twig' %}
 
@@ -30,8 +13,8 @@
             <li>Nombre de chambres : {{ gite.getNombreChambres() }}</li>
             <li>Nombre de couchages : {{ gite.getNombresCouchages() }}</li>
             <li>Équipements : {{ gite.getEquipements() }}</li>
-            {# Ajoutez d'autres propriétés ici en fonction de votre entité #}
+            {# Ajoutez d'autres propriétés ici en fonction de votre entité  #}
         </ul>
 
     {% endif %}
-{% endblock %}
+{% endblock %} 

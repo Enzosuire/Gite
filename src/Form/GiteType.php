@@ -12,29 +12,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GiteType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('localisation')
-            ->add('surface_habitable')
-            ->add('nombre_chambres')
-            ->add('nombres_couchages')
-            ->add('equipements')
-            ->add('proprietaire', EntityType::class, [
-                'class' => Proprietaire::class,
-'choice_label' => 'id',
+            ->add('surfaceHabitable')
+            ->add('nombreChambres')
+            ->add('nombresCouchages')
+            // Ajoutez ici les champs supplémentaires du formulaire (équipements, animaux, etc.)
+            ->add('equipements', EntityType::class, [
+                'class' => 'App\Entity\Equipements',
+                'multiple' => true,
+                'expanded' => true,
             ])
-            ->add('Contact', EntityType::class, [
-                'class' => Contacts::class,
-'choice_label' => 'id',
-            ])
-        ;
+            ->add('animaux', EntityType::class, [
+                'class' => 'App\Entity\Animaux',
+                'multiple' => true,
+                'expanded' => true,
+            ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Gites::class,
         ]);
     }
 }
+

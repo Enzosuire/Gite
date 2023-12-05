@@ -30,7 +30,7 @@ class TarifsController extends AbstractController
         $tarif->setTarifHebdomadaire(500.0);                  // Replace with the actual weekly rate
 
         // Assuming you have a Gite with ID 1 in the database
-        $gite = $entityManager->getRepository(Gites::class)->find(1);
+        $gite = $entityManager->getRepository(Gites::class)->find(8);
         $tarif->setGite($gite);
 
         // Add the tarif to the database

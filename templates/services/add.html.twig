@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'équipements{% endblock %}
+
+{% block body %}
+    <h1>Équipements ajoutés</h1>
+
+    <p>Les équipements suivants ont été ajoutés :</p>
+
+    <ul>
+        <li>AccesInternet: {{ services.AccesInternet ? 'Oui' : 'Non' }}</li>
+        <li>LocationLinge: {{ services.LocationLinge ? 'Oui' : 'Non' }}</li>
+        <li>MenageFinSejour: {{ services.MenageFinSejour ? 'Oui' : 'Non' }}</li>
+      
+
+        {# Ajoutez d'autres propriétés selon vos besoins #}
+    </ul>
+
+    <p>
+        <a href="{{ path('app_equipements') }}">Ajouter d'autres équipements</a>
+    </p>
+{% endblock %}

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Gites;
 
 
 class AnimauxController extends AbstractController
@@ -27,6 +28,8 @@ class AnimauxController extends AbstractController
         $animaux->setAccepteAnimaux(true);
         $animaux->setTarifAnimaux(20.0);
       
+        $gite = $entityManager->getRepository(Gites::class)->find(5);
+        $animaux->setGite($gite);
 
         // Ajoutez les équipements à la base de données
         $entityManager->persist($animaux);
