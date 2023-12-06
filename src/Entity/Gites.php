@@ -16,8 +16,6 @@ class Gites
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $localisation = null;
 
     #[ORM\Column]
     private ?float $surface_habitable = null;
@@ -28,8 +26,7 @@ class Gites
     #[ORM\Column]
     private ?int $nombres_couchages = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $equipements = null;
+
 
     #[ORM\ManyToOne(targetEntity: Proprietaire::class, inversedBy: 'gites')]
     #[ORM\JoinColumn(nullable: false)]
@@ -46,7 +43,7 @@ class Gites
     #[ORM\OneToMany(mappedBy: 'gite', targetEntity: Tarifs::class)]
     private Collection $tarifs;
 
-    #[ORM\OneToMany(mappedBy: 'gite', targetEntity: Equipements::class)]
+    #[ORM\OneToMany(mappedBy: 'gite', targetEntity: Equipements::class,cascade: ['persist'])]
     private Collection $equipement;
 
 
@@ -56,6 +53,15 @@ class Gites
 
     #[ORM\OneToMany(mappedBy: 'Gites', targetEntity: Services::class)]
     private Collection $services;
+
+    #[ORM\Column(length: 255)]
+    private ?string $région = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $département = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $ville = null;
 
     public function __construct()
     {
@@ -71,17 +77,6 @@ class Gites
         return $this->id;
     }
 
-    public function getLocalisation(): ?string
-    {
-        return $this->localisation;
-    }
-
-    public function setLocalisation(string $localisation): static
-    {
-        $this->localisation = $localisation;
-
-        return $this;
-    }
 
     public function getSurfaceHabitable(): ?float
     {
@@ -119,17 +114,7 @@ class Gites
         return $this;
     }
 
-    public function getEquipements(): ?string
-    {
-        return $this->equipements;
-    }
 
-    public function setEquipements(string $equipements): static
-    {
-        $this->equipements = $equipements;
-
-        return $this;
-    }
 
    
 
@@ -328,6 +313,42 @@ class Gites
                 $service->setGites(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRégion(): ?string
+    {
+        return $this->région;
+    }
+
+    public function setRégion(string $région): static
+    {
+        $this->région = $région;
+
+        return $this;
+    }
+
+    public function getDépartement(): ?string
+    {
+        return $this->département;
+    }
+
+    public function setDépartement(string $département): static
+    {
+        $this->département = $département;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): static
+    {
+        $this->ville = $ville;
 
         return $this;
     }

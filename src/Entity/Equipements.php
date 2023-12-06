@@ -43,6 +43,11 @@ class Equipements
     #[ORM\ManyToOne(inversedBy: 'equipement')]
     private ?Gites $gite = null;
 
+    #[ORM\Column]
+    private ?bool $lavevaiselle = null;
+
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -167,4 +172,18 @@ class Equipements
 
         return $this;
     }
+
+    public function isLavevaiselle(): ?bool
+    {
+        return $this->lavevaiselle;
+    }
+
+    public function setLavevaiselle(bool $lavevaiselle): static
+    {
+        $this->lavevaiselle = $lavevaiselle;
+
+        return $this;
+    }
+
+
 }
