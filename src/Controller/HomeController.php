@@ -29,8 +29,8 @@ class HomeController extends AbstractController
 
         // Si le formulaire est soumis et valide, filtrez les gîtes
         if ($form->isSubmitted() && $form->isValid()) {
-            $equipementCriteria = $form->getData();
-            $gites = $gitesRepository->searchByEquipements($equipementCriteria);
+            $criteria = $form->getData();
+            $gites = $gitesRepository->searchByEquipements($criteria);
             
         }
 
@@ -45,25 +45,7 @@ class HomeController extends AbstractController
 
 
   
-    // public function index(Request $request): Response
-    // {
-    //     $searchData = new SearchData();
-    //     $form = $this->createForm(SearchType::class, $searchData);
 
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //        dd($searchData);
-
-            
-
-    //         return $this->render('home/index.html.twig', [
-    //             'form' => $form->createView(),
-    //         ]);
-    //     }
-    // }
-
-  
 
 
 

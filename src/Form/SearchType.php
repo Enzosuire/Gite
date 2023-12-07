@@ -4,12 +4,13 @@ namespace App\Form;
 
 use App\Entity\Equipements;
 use App\Model\SearchData;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SearchType extends AbstractType
 {
@@ -70,15 +71,63 @@ class SearchType extends AbstractType
                 'required' => false,
             ])
 
-            // ->add('motCle', TextType::class, [
-            //     'label' => 'Mot-clé',
+            ->add('region', ChoiceType::class, [
+                'label' => 'Région',
+                'required' => false,
+                'choices' => [
+                    'Pays de la Loire' => 'Pays de la Loire',
+                    'Auvergne-Rhône-Alpes' => 'Auvergne-Rhône-Alpes',
+                    'Bourgogne-Franche-Comté' => 'Bourgogne-Franche-Comté',
+                    'Bretagne' => 'Bretagne',
+                    'Centre-Val de Loire' => 'Centre-Val de Loire',
+                    'Corse' => 'Corse',
+                    'Grand Est' => 'Grand Est',
+                    'Hauts-de-France' => 'Hauts-de-France',
+                    'Île-de-France' => 'Île-de-France',
+                    'Normandie' => 'Normandie',
+                    'Nouvelle-Aquitaine' => 'Nouvelle-Aquitaine',
+                    'Occitanie' => 'Occitanie',
+                    'Provence-Alpes-Côte d\'Azur' => 'Provence-Alpes-Côte d\'Azur',
+                    // Ajoutez d'autres régions selon vos besoins
+                ],
+            ])   
+            
+            ->add('departement', ChoiceType::class, [
+                'label' => 'Département',
+                'required' => false,
+                'choices' => [
+                    'Indre-et-Loire' => 'Indre-et-Loire',
+                    'Meuse ' => 'Meuse',
+                    'Morbihan' => 'Morbihan',
+                    'Var' => 'Var',
+                    'Yvelines' => 'Yvelines',
+                    'Landes' => 'Landes',
+                    'Rhône' => 'Rhône',
+                    'Ariège' => 'Ariège',
+                    
+                ],
+            ])
+            // ->add('departement', TextType::class, [
+            //     'label' => 'Département',
             //     'required' => false,
-            //     'attr' => ['placeholder' => 'Rechercher...']
             // ])
-           
-            // ->add('rechercher', SubmitType::class, [
-            //     'attr' => ['class' => 'btn btn-primary']
-            // ]);
+
+            ->add('ville', ChoiceType::class, [
+                'label' => 'ville',
+                'required' => false,
+                'choices' => [
+                    'Angers' => 'Angers',
+                    'Chinon ' => 'Chinon',
+                    'Verdun' => 'Verdun',
+                    'Vannes' => 'Vannes',
+                    'Versailles' => 'Versailles',
+                    'Foix' => 'Foix',
+                    'Biscarrosse' => 'Biscarrosse',
+                    'Lyon' => 'Lyon',
+                    
+                ],
+            ])
+    
     
             ->add('rechercher', SubmitType::class);
 

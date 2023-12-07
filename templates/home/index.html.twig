@@ -1,73 +1,115 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
+	<div class="container mt-4">
+		{{ form_start(form, {'attr': {'class': 'form-horizontal custom-form'}}) }}
 
-{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		<div class="row mb-4 text-center p-3">
+			<div class="col-md-4">
+				<h3>{{ form_row(form.region, {'attr': {'class': 'form-control'}}) }}</h3>
+			</div>
+			<div class="col-md-4">
+				<h3>{{ form_row(form.departement, {'attr': {'class': 'form-control'}}) }}</h3>
+			</div>
+			<div class="col-md-4">
+				<h3>{{ form_row(form.ville, {'attr': {'class': 'form-control'}}) }}</h3>
+			</div>
+		</div>
 
-{# <div class="row">
-    <div class="col-md-12">
-        {{ form_row(form.motCle) }}
+		<div class="row mb-4">
+			<div class="col-md-6">
+				<div class="card custom-card">
+					<div class="card-body p-4">
+						<h3 class="mb-3 card-title custom-heading text-center">Équipements</h3>
+						<div class="row mb-3">
+							<div class="col-md d-flex justify-content-between">
+								{{ form_row(form.lavelinge, {'label_attr': {'class': 'form-check-label'}}) }}
+								{{ form_row(form.climatisation, {'label_attr': {'class': 'form-check-label'}}) }}
+								{{ form_row(form.television, {'label_attr': {'class': 'form-check-label'}}) }}
+								{{ form_row(form.terrasse, {'label_attr': {'class': 'form-check-label'}}) }}
+								{{ form_row(form.barbecue, {'label_attr': {'class': 'form-check-label'}}) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md d-flex justify-content-between">
+								{{ form_row(form.piscinePrivee, {'label_attr': {'class': 'form-check-label'}}) }}
+								{{ form_row(form.piscinePartagee, {'label_attr': {'class': 'form-check-label'}}) }}
+								{{ form_row(form.tennis, {'label_attr': {'class': 'form-check-label'}}) }}
+								{{ form_row(form.pingPong, {'label_attr': {'class': 'form-check-label'}}) }}
+								{{ form_row(form.lavevaiselle, {'label_attr': {'class': 'form-check-label'}}) }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="card custom-card">
+					<div class="card-body p-4">
+						<h3 class="mb-3 card-title custom-heading text-center">Services</h3>
+						<div class="row mb-3 d-flex justify-content-between">
+							<div class="col-md-4">
+								{{ form_row(form.locationLinge, {'label_attr': {'class': 'form-check-label'}}) }}
+							</div>
+							<div class="col-md-4">
+								{{ form_row(form.menageFinSejour, {'label_attr': {'class': 'form-check-label'}}) }}
+							</div>
+							<div class="col-md-4">
+								{{ form_row(form.accesInternet, {'label_attr': {'class': 'form-check-label'}}) }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row mb-4 p-4">
+				<div class="col-md-12 text-center">
+					<div class="d-inline-block">
+						{{ form_row(form.rechercher, {'attr': {'class': 'btn btn-warning'}}) }}
+					</div>
+					<div class="d-inline-block">
+						<a href="{{ path('home') }}" class="btn btn-warning btn">Réinitialiser les filtres</a>
+					</div>
+				</div>
+			</div>
+
+			{{ form_end(form) }}
+
+			<h1 class="mt-4 mb-4 text-center">Liste des Gîtes</h1>
+
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+				{% for gite in gites %}
+					<div class="col">
+						<div class="card h-100">
+							<div class="card-body p-5">
+								<h5 class="card-title text-center">{{ gite.getNom() }}</h5>
+								<p class="card-text">
+									Région:
+									{{ gite.getRegion() }}<br>
+									Ville:
+									{{ gite.getVille() }}<br>
+									Département:
+									{{ gite.getDepartement() }}<br>
+									Surface habitable:
+									{{ gite.getSurfaceHabitable() }}
+									m²<br>
+									Nombre de chambres:
+									{{ gite.getNombreChambres() }}<br>
+									Nombre de couchages:
+									{{ gite.getNombresCouchages() }}<br>
+								</p>
+								<div class="text-center">
+									<a href="{{ path('gite_detail', {'id': gite.getId()}) }}" class="btn btn-warning btn">Détail</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
     </div>
-</div> #}
-
-<div class="row">
-    <div class="col-md-6 checkbox">
-        <h3>Équipements</h3>
-        {{ form_row(form.lavelinge) }}
-        {{ form_row(form.climatisation) }}
-        {{ form_row(form.television) }}
-        {{ form_row(form.terrasse) }}
-        {{ form_row(form.barbecue) }}
-        {{ form_row(form.piscinePrivee) }}
-        {{ form_row(form.piscinePartagee) }}
-        {{ form_row(form.tennis) }}
-        {{ form_row(form.pingPong) }}
-        {{ form_row(form.lavevaiselle) }}
-        {# ... ajoutez les autres champs d'équipements ici ... #}
-    </div>
-    <div class="col-md-6">
-        <h3>Services</h3>
-        {{ form_row(form.locationLinge) }}
-        {{ form_row(form.menageFinSejour) }}
-        {{ form_row(form.accesInternet) }}
-        {# ... ajoutez les autres champs de services ici ... #}
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12 text-center">
-        {{ form_row(form.rechercher, {'attr': {'class': 'btn btn-primary'}}) }}
-    </div>
-</div>
-
-{{ form_end(form) }}
-    <h1 class="mt-4 mb-4 text-center">Liste des Gîtes</h1>
-
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% for gite in gites %}
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body p-5">
-                        <h5 class="card-title text-center">{{ gite.getNom() }}</h5>
-                        <p class="card-text">
-                            Région : {{ gite.getRégion() }}<br>
-                            Ville : {{ gite.getville() }}<br>
-                            Département: {{ gite.getdépartement() }}<br>
-                            Surface habitable: {{ gite.getSurfaceHabitable() }} m²<br>
-                            Nombre de chambres: {{ gite.getNombreChambres() }}<br>
-                            Nombre de couchages: {{ gite.getNombresCouchages() }}<br>
-                         
-                        </p>
-                        <div class="text-center">
-                          <a href="{{ path('gite_detail', {'id': gite.getId()}) }}" class="btn btn-warning btn">Détail</a>
-                         </div>
-
-
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-{% endblock %}
+	{% endblock %}

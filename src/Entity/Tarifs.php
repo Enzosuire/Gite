@@ -26,6 +26,9 @@ class Tarifs
     #[ORM\ManyToOne(inversedBy: 'tarifs')]
     private ?Gites $gite = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Saison = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Tarifs
     public function setGite(?Gites $gite): static
     {
         $this->gite = $gite;
+
+        return $this;
+    }
+
+    public function getSaison(): ?string
+    {
+        return $this->Saison;
+    }
+
+    public function setSaison(string $Saison): static
+    {
+        $this->Saison = $Saison;
 
         return $this;
     }

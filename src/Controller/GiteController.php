@@ -34,12 +34,14 @@ class GiteController extends AbstractController
     {
 
         $gite = new Gites();
-        $gite->setLocalisation('Marseille');
+        $gite->setVille('Marseille');
         $gite->setSurfaceHabitable(400);
         $gite->setNombreChambres(8);
         $gite->setNombresCouchages(13);
-        $gite->setEquipements('Équipements du gîte');
         $gite->setNom('Bateau');
+        $gite->setRegion('Pays de la Loire');
+        $gite->setDepartement('Maine et Loire');
+
 
 
 
@@ -86,25 +88,4 @@ class GiteController extends AbstractController
             'adjectif' => 'ajouté'
         ]);
     }
-
-
-
-
- 
-
-
-    // #[Route('/gites/{id}', name:'gites_show')]
-    // public function show($id): Response
-    // {
-    //     // Ajoutez ici la logique pour afficher les détails d'un gîte en fonction de son ID
-    //     return $this->render('gite/show.html.twig', [
-    //         'controller_name' => 'GiteController',
-    //     ]);
-    // }
-
-
-
-
-
-
 }

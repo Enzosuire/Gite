@@ -81,12 +81,20 @@ class GitesRepository extends ServiceEntityRepository
                          ->setParameter('accesInternet', true);
         }
 
-
-        // if (!empty($criteria['motCle'])) {
-        //     $queryBuilder->andWhere('g.nom LIKE :motCle OR g.description LIKE :motCle')
-        //                  ->setParameter('motCle', '%' . $criteria['motCle'] . '%');
-        // }
-       
+        if (!empty($criteria['region'])) {
+            $queryBuilder->andWhere('g.region = :region')
+                ->setParameter('region', $criteria['region']);
+        }
+    
+        if (!empty($criteria['departement'])) {
+            $queryBuilder->andWhere('g.departement = :departement')
+                ->setParameter('departement', $criteria['departement']);
+        }
+    
+        if (!empty($criteria['ville'])) {
+            $queryBuilder->andWhere('g.ville = :ville')
+                ->setParameter('ville', $criteria['ville']);
+        }
 
     
         return $queryBuilder->getQuery()->getResult();

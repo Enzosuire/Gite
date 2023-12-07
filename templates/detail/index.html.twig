@@ -10,10 +10,12 @@
             <div class="card-body">
                 <h5 class="card-title">{{ gite.getNom() }}</h5>
                 <p class="card-text">
-                    <strong>Localisation:</strong> {{ gite.getLocalisation() }}<br>
                     <strong>Surface habitable:</strong> {{ gite.getSurfaceHabitable() }} m²<br>
                     <strong>Nombre de chambres:</strong> {{ gite.getNombreChambres() }}<br>
                     <strong>Nombre de couchages:</strong> {{ gite.getNombresCouchages() }}<br>
+                    <strong>Surface habitable:</strong> {{ gite.getRegion() }} <br>
+                    <strong>Nombre de chambres:</strong> {{ gite.getville() }}<br>
+                    <strong>Nombre de couchages:</strong> {{ gite.getdepartement() }}<br>
                     
                 </p>
             </div>
@@ -73,6 +75,7 @@
                        <li class="list-group-item"><strong>Période de début:</strong> {{ tarif.getPeriodeDebut()|date('Y-m-d') }}<br>
                         <li class="list-group-item"><strong>Période de fin:</strong> {{ tarif.getPeriodeFin()|date('Y-m-d') }}<br>
                         <li class="list-group-item"><strong>Tarif hebdomadaire:</strong> {{ tarif.getTarifHebdomadaire() }} €
+                        <li class="list-group-item"><strong>Saison:</strong> {{ tarif.getsaison() }} <br>
                     </ul>
                 {% endfor %}
             </ul>
@@ -100,6 +103,14 @@
         {# Ajoutez d'autres propriétés selon vos besoins #}
     </ul>
 {% endfor %}
+
+<div class="container p-5">
+<div class="text-center">
+     <a href="{{ path('home') }}" class="btn btn-warning btn">Retour vers la page d'accueil</a>
+ </div>
+ </div>
+
+
 
     
     </div>

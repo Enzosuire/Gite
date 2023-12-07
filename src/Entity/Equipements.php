@@ -29,7 +29,7 @@ class Equipements
     private ?bool $barbecue = null;
 
     #[ORM\Column]
-    private ?bool $pisicinePrivee = null;
+    private ?bool $piscinePrivee = null;
 
     #[ORM\Column]
     private ?bool $piscinePartagee = null;
@@ -115,12 +115,12 @@ class Equipements
 
     public function isPisicinePrivee(): ?bool
     {
-        return $this->pisicinePrivee;
+        return $this->piscinePrivee;
     }
 
     public function setPisicinePrivee(bool $pisicinePrivee): static
     {
-        $this->pisicinePrivee = $pisicinePrivee;
+        $this->piscinePrivee = $pisicinePrivee;
 
         return $this;
     }

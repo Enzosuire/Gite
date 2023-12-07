@@ -1,0 +1,19 @@
+body {
+    background-image: url('../images/img-6ppSCJOrPlQNbRL0OwsxFBzN.png');
+    background-position: center;
+    background-attachment: fixed;
+    backdrop-filter: blur(2px);
+ 
+}
+
+.rvp{
+    color: white;
+}
+
+.custom-form .form-check-label {
+    margin-right: 3px;
+}
+
+
+
+

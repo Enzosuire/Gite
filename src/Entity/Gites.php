@@ -43,7 +43,7 @@ class Gites
     #[ORM\OneToMany(mappedBy: 'gite', targetEntity: Tarifs::class)]
     private Collection $tarifs;
 
-    #[ORM\OneToMany(mappedBy: 'gite', targetEntity: Equipements::class,cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'gite', targetEntity: Equipements::class, cascade: ['persist'])]
     private Collection $equipement;
 
 
@@ -55,10 +55,10 @@ class Gites
     private Collection $services;
 
     #[ORM\Column(length: 255)]
-    private ?string $région = null;
+    private ?string $region = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $département = null;
+    private ?string $departement = null;
 
     #[ORM\Column(length: 255)]
     private ?string $ville = null;
@@ -69,7 +69,6 @@ class Gites
         $this->tarifs = new ArrayCollection();
         $this->equipement = new ArrayCollection();
         $this->services = new ArrayCollection();
-       
     }
 
     public function getId(): ?int
@@ -114,11 +113,6 @@ class Gites
         return $this;
     }
 
-
-
-   
-
-   
 
 
     /**
@@ -317,29 +311,6 @@ class Gites
         return $this;
     }
 
-    public function getRégion(): ?string
-    {
-        return $this->région;
-    }
-
-    public function setRégion(string $région): static
-    {
-        $this->région = $région;
-
-        return $this;
-    }
-
-    public function getDépartement(): ?string
-    {
-        return $this->département;
-    }
-
-    public function setDépartement(string $département): static
-    {
-        $this->département = $département;
-
-        return $this;
-    }
 
     public function getVille(): ?string
     {
@@ -349,6 +320,54 @@ class Gites
     public function setVille(string $ville): static
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of departement
+     *
+     * @return ?string
+     */
+    public function getDepartement(): ?string
+    {
+        return $this->departement;
+    }
+
+    /**
+     * Set the value of departement
+     *
+     * @param ?string $departement
+     *
+     * @return self
+     */
+    public function setDepartement(?string $departement): self
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of region
+     *
+     * @return ?string
+     */
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set the value of region
+     *
+     * @param ?string $region
+     *
+     * @return self
+     */
+    public function setRegion(?string $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }
